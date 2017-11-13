@@ -1,6 +1,8 @@
 from django.http import JsonResponse
 import json
 
+# 由于客户端传来的棋盘上面皇后数量没有限制，必须在普通位运算的基础上加个row进行判断
+# 不像运行八皇后的时候，聪明的我们已经知道每一行顶多只能有一个皇后
 def bitCalc(chessBoard):
     flag = True
     n = len(chessBoard)
@@ -27,6 +29,7 @@ def bitCalc(chessBoard):
         r = r >> 1
     return flag
 
+# 接受客户端传过来的棋盘，对棋盘继续位运算的检验
 def index(request): 
     result = {
         'isLegal':False
